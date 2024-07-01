@@ -43,6 +43,42 @@ public class BigInt {
         }
         return count;
     }
+    
+    /**
+         * Compares this {@code BigInt} object with the specified object for equality.
+         * Returns {@code true} if the specified object is also a {@code BigInt} object and
+         * has the same digits in the same order as this {@code BigInt} object.
+         *
+         * @param obj the object to be compared for equality with this {@code BigInt} object
+         * @return {@code true} if the specified object is equal to this {@code BigInt} object, {@code false} otherwise
+         */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj instanceof BigInt == false) {
+            return false;
+        }
+
+        BigInt objNumber = (BigInt)obj;
+        Iterator<Integer> thisIter = digits.descendingIterator();
+        Iterator<Integer> objIter = objNumber.digits.descendingIterator();
+        
+        while(thisIter.hasNext()) {
+
+            if (!thisIter.next().equals(objIter.next())) {
+                return false;
+            }
+        }
+        return true;
+
+    }
 
     @Override
     public String toString(){
