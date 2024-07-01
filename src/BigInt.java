@@ -30,6 +30,15 @@ public class BigInt {
             digits.add(Character.getNumericValue(number.charAt(i))); 
         }
     }
+    
+    /**
+         * Returns the digits of the BigInt as a LinkedList of integers.
+         *
+         * @return the digits of the BigInt as a LinkedList of integers
+         */
+        public LinkedList<Integer> getDigits() {
+            return digits;
+        }
 
     /**
         * Count the number of digits in the BigInt.
@@ -43,7 +52,7 @@ public class BigInt {
         }
         return count;
     }
-    
+
     /**
          * Compares this {@code BigInt} object with the specified object for equality.
          * Returns {@code true} if the specified object is also a {@code BigInt} object and
