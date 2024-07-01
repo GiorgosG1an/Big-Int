@@ -30,7 +30,7 @@ public class BigInt {
             digits.add(Character.getNumericValue(number.charAt(i))); 
         }
     }
-    
+
     /**
          * Returns the digits of the BigInt as a LinkedList of integers.
          *
@@ -87,6 +87,51 @@ public class BigInt {
         }
         return true;
 
+    }
+
+    public static BigInt add(BigInt a, BigInt b) {
+
+        BigInt result;
+        StringBuilder resultSB = new StringBuilder();
+        int carry = 0;
+        int sum = 0;
+        int digitA = 0;
+        int digitB = 0;
+
+        Iterator<Integer> aIter = a.digits.iterator();
+        Iterator<Integer> bIter = b.digits.iterator();
+
+        while (aIter.hasNext() || bIter.hasNext()) {
+            sum = 0;
+            carry = 0;
+
+            if (aIter.hasNext()) {
+                digitA = aIter.next();
+            }
+            else {
+                digitA = 0;
+            }
+
+            if (bIter.hasNext()) {
+                digitB = bIter.next();
+            }
+            else {
+                digitB = 0;
+            }
+
+            // check if there is a carry and add it
+			if (digitA + digitB >= 10){
+				carry = 1;
+				sum = (digitA + digitB) % 10 + carry;
+			}
+			else{
+				carry = 0;
+				sum = digitA + digitB + carry;
+            }
+            resultSB.append(sum);
+        }
+        result = new BigInt(resultSB.toString());
+        return result;
     }
 
     @Override
