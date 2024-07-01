@@ -29,4 +29,19 @@ public class BigInt {
             digits.add(Character.getNumericValue(number.charAt(i))); 
         }
     }
+
+    /**
+        * Count the number of digits in the BigInt.
+        *
+        * @return the number of digits in the BigInt
+    */    
+    public int countDigits() {
+        int count = 0;
+        for (int digit : digits) {
+            count++;
+        }
+        return count;
+    }
+
+    
 }
