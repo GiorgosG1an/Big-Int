@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.LinkedList;
 /**
     * Represents a large integer number.
@@ -43,5 +44,15 @@ public class BigInt {
         return count;
     }
 
-    
+    @Override
+    public String toString(){
+       StringBuilder sb = new StringBuilder(); 
+       Iterator<Integer> descIter = digits.descendingIterator();
+
+       while(descIter.hasNext()) {
+        sb.append(descIter.next());
+       }
+
+       return sb.toString();
+    }
 }
