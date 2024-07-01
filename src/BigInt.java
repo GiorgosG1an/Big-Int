@@ -89,37 +89,46 @@ public class BigInt {
 
     }
 
-    public static BigInt add(BigInt a, BigInt b) {
-
+    /**
+	 * Adds two BigInt objects and returns the result as a new BigInt object.
+	 * 
+	 * @param a the first BigInt object
+	 * @param b the second BigInt object
+	 * @return a new BigInt object that represents the sum of the two BigInt objects
+	 */
+    public static BigInt add(BigInt a, BigInt b){
         BigInt result;
-        StringBuilder resultSB = new StringBuilder();
+		String resulString = "";
         int carry = 0;
-        int sum = 0;
-        int digitA = 0;
-        int digitB = 0;
-
-        Iterator<Integer> aIter = a.digits.iterator();
-        Iterator<Integer> bIter = b.digits.iterator();
-
-        while (aIter.hasNext() || bIter.hasNext()) {
-            sum = 0;
-            carry = 0;
-
-            if (aIter.hasNext()) {
-                digitA = aIter.next();
-            }
-            else {
-                digitA = 0;
-            }
-
-            if (bIter.hasNext()) {
-                digitB = bIter.next();
-            }
-            else {
-                digitB = 0;
-            }
-
-            // check if there is a carry and add it
+		int sum = 0;
+		int digitA = 0;
+		int digitB = 0;
+		Iterator<Integer> aIter = a.getDigits().iterator();
+		Iterator<Integer> bIter = b.getDigits().iterator();
+		// compare to see which number is bigger
+		// BigIntComparator comparator = new BigIntComparator();
+		// int compare = comparator.compare(a, b);
+		while(aIter.hasNext() || bIter.hasNext()) {
+			sum = 0;
+			carry = 0;
+			
+			// get the next digit of the first number
+			// if there is no next digit, set it to 0
+			if (aIter.hasNext()) {
+				digitA = aIter.next();
+			}
+			else {
+				digitA = 0;
+			}
+			// get the next digit of the second number
+			// if there is no next digit, set it to 0
+			if (bIter.hasNext()) {
+				digitB = bIter.next();
+			}
+			else {
+				digitB = 0;
+			}
+			// check if there is a carry and add it
 			if (digitA + digitB >= 10){
 				carry = 1;
 				sum = (digitA + digitB) % 10 + carry;
@@ -127,13 +136,15 @@ public class BigInt {
 			else{
 				carry = 0;
 				sum = digitA + digitB + carry;
-            }
-            resultSB.append(sum);
-        }
-        result = new BigInt(resultSB.toString());
+			}
+			// add the sum to the result string
+			resulString = sum + resulString;
+		} 
+		// create a new BigInt object with the result and return it
+		result = new BigInt(resulString);
         return result;
     }
-
+    
     @Override
     public String toString(){
        StringBuilder sb = new StringBuilder(); 
